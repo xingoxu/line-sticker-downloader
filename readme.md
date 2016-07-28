@@ -5,8 +5,6 @@
 1. install [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) / [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/)
 2. click [here](https://greasyfork.org/en/scripts/21738-line-sticker-downloader)
 
-3. maybe you have to pull it into your browser.
-
 # How to use (Node.js)
 
 1. install [Node.js](https://nodejs.org/)

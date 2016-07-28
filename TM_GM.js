@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         line-sticker-downloader
 // @namespace    https://github.com/xingoxu/line-sticker-downloader
-// @version      0.1
+// @version      0.0.2
 // @description  A line sticker downloader
 // @author       xingoxu
 // @match        https://store.line.me/stickershop/product/*
@@ -207,7 +207,7 @@
     window.saveAs = saveAs;
   })();
 
-  function getURL(resolve, reject) {
+  function getURL() {
     console.log('Get URLing...');
 
     var firstAndLastNode = Array.prototype.slice.call($('ul.FnSticker_animation_list_img li:first-child span,ul.FnSticker_animation_list_img li:last-child span'));
@@ -219,11 +219,16 @@
       firstAndLastNode[index] = backgroundImage.substring(lastIndex + 1, backgroundImage.lastIndexOf('.'));
     });
 
-    resolve({
+    if(firstAndLastNode.length<=1){
+      console.log('No Matched Nodes...Exiting...');
+      return;
+    }
+
+    return {
       first: Number.parseInt(firstAndLastNode[0]),
       last: Number.parseInt(firstAndLastNode[1]),
       url: imageURL
-    });
+    };
   }
 
   function download(url,callback) {
@@ -239,6 +244,11 @@
     xhr.responseType = 'blob';
     xhr.send();
   }
+  var urls=getURL();
+  if(!urls) {
+    return;
+  }
+
   //is Downloading
   var isDownloading = false;
 
@@ -253,7 +263,7 @@
     isDownloading = true;
     $button.find('.mdBtn01Txt').text('Downloading...');
 
-    (new Promise(getURL))
+    (Promise.resolve(urls))
     .then(function(ids) {
         'use strict';
         if (ids.first > ids.last) {
