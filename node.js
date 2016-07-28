@@ -1,6 +1,6 @@
 //输入line表情地址
 //line sticker url here
-var url = "https://store.line.me/stickershop/product/1244248/ja"; 
+var url = "https://store.line.me/stickershop/product/5272/ja"; 
 //输入文件夹名字，为空则下载到当前文件夹下的images文件夹，最好不要使用中文
 //FolderName,If it is null or "" then it will use "images"
 var folderName = ""; 
